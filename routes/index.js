@@ -57,7 +57,7 @@ router.get("/category", (req, res) => {
 router.get("/search/:item", (req, res) => {
   const { item } = req.params;
   const abc = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKPLMNOPQRSTUVWXYZ ";
-  if (abc.indexOf(id) !== -1) {
+  if (abc.indexOf(item) !== -1) {
     connection.query(
       `SELECT * FROM product WHERE category = ${item}`,
       (err, result, fields) => {
