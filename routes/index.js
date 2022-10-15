@@ -57,9 +57,9 @@ router.get("/category", (req, res) => {
 router.get("/search/:item", (req, res) => {
   const { item } = req.params;
   const abc = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKPLMNOPQRSTUVWXYZ ";
-  if (abc.indexOf(item) !== -1) {
+  if (item.split("").every((i) => abc.indexOf(i) !== -1)) {
     connection.query(
-      `SELECT * FROM product WHERE category = ${item}`,
+      `SELECT * FROM product WHERE name LIKE '%${item}%'`,
       (err, result, fields) => {
         if (err) throw err;
         res.send(result);
