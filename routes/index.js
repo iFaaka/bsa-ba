@@ -22,16 +22,8 @@ router.get("/products", (req, res) => {
   });
 });
 
-// GET all categories
-router.get("/category", (req, res) => {
-  connection.query("SELECT * FROM category", (err, result, fields) => {
-    if (err) throw err;
-    res.send(result);
-  });
-});
-
 // Items from a specific category
-router.get("/category/:id", (req, res) => {
+router.get("/products/:id", (req, res) => {
   const { id } = req.params;
   connection.query(
     `SELECT * FROM product WHERE category = ${id}`,
@@ -40,6 +32,42 @@ router.get("/category/:id", (req, res) => {
       res.send(result);
     }
   );
+});
+
+// GET all products with discount
+router.get("/discount", (req, res) => {
+  connection.query(
+    "SELECT * FROM product WHERE discount > 0",
+    (err, result, fields) => {
+      if (err) throw err;
+      res.send(result);
+    }
+  );
+});
+
+// GET all categories
+router.get("/category", (req, res) => {
+  connection.query("SELECT * FROM category", (err, result, fields) => {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+// Search items with inputs
+router.get("/search/:item", (req, res) => {
+  const { item } = req.params;
+  const abc = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKPLMNOPQRSTUVWXYZ ";
+  if (abc.indexOf(id) !== -1) {
+    connection.query(
+      `SELECT * FROM product WHERE category = ${item}`,
+      (err, result, fields) => {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  } else {
+    alert("Por favor solo ingrese letras");
+  }
 });
 
 // Keep alive
