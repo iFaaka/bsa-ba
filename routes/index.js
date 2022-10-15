@@ -66,7 +66,9 @@ router.get("/search/:item", (req, res) => {
       }
     );
   } else {
-    alert("Por favor solo ingrese letras");
+    res.send(
+      "Ups, mi input solo acepta letras, por favor ingresa correctamente el nombre"
+    );
   }
 });
 
