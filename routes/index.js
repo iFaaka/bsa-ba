@@ -57,7 +57,9 @@ router.get("/category", (req, res) => {
 router.get("/search/:item", (req, res) => {
   const { item } = req.params;
   const abc = "abcdefghijklmnopqrstuvwxyABCDEFGHIJKPLMNOPQRSTUVWXYZ ";
-  if (item.split("").every((i) => abc.indexOf(i) !== -1)) {
+  if (
+    item.split("").every((i) => abc.indexOf(i) !== -1 && item.trim().length > 1)
+  ) {
     connection.query(
       `SELECT * FROM product WHERE name LIKE '%${item}%'`,
       (err, result, fields) => {
@@ -66,9 +68,7 @@ router.get("/search/:item", (req, res) => {
       }
     );
   } else {
-    res.send(
-      "Ups, mi input solo acepta letras, por favor ingresa correctamente el nombre"
-    );
+    res.status(500).send(JSON.parse("No se pueden enviar consultas vacias"));
   }
 });
 
