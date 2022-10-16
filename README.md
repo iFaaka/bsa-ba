@@ -10,5 +10,7 @@ Biblotecas y Frameworks utilizados:
 -Morgan y Nodemon (para facilitar el desarrollo)
 
 
+Para levantar la aplicacion y hacer pruebas, se utiliza el comando // npm run dev //
+
 Esto consiste en una API hecha con NodeJs y Express que consume datos de una BD en MySql, pueden encontrar su documentacion en:
 https://ba-fr-fa.netlify.app/documentacionapi
