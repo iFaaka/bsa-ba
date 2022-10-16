@@ -68,7 +68,7 @@ router.get("/search/:item", (req, res) => {
       }
     );
   } else {
-    res.status(500).send(JSON.parse("No se pueden enviar consultas vacias"));
+    res.send(JSON.parse("No se pueden enviar consultas vacias"));
   }
 });
 
